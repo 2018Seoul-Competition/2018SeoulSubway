@@ -21,11 +21,19 @@ public class RestHTTPUrlConnection {
     //methods
     //FIXME : only need real time api.
     public String searchSTNBySubwayLineService(String strLineNUm){
-        return request("http://openapi.seoul.go.kr:8088/"+m_strTempKey+"/xml/SearchSTNBySubwayLineService/0 /5/"+strLineNUm);
+        return request("http://openapi.seoul.go.kr:8088/"+m_strTempKey+"/xml/SearchSTNBySubwayLineService/0/5/"+strLineNUm);
     }
 
     public String realtimeStationArrival(String strStationName){
         return request("http://swopenAPI.seoul.go.kr/api/subway/" + m_strTempKey + "/xml/realtimeStationArrival/0/5/" +strStationName);
+    }
+
+    public String searchArrivalInfoByIDService(String strStationCode){
+        //상행 1
+        String strUproute = request("http://openAPI.seoul.go.kr:8088/"+m_strTempKey + "/xml/SearchArrivalInfoByIDService/0/5/"+ strStationCode + "/1/3/");
+        //하행 2
+        String strDwonroute = request("http://openAPI.seoul.go.kr:8088/"+m_strTempKey + "/xml/SearchArrivalInfoByIDService/0/5/"+ strStationCode + "/2/3/ ");
+        return strUproute + strDwonroute;
     }
 
 
@@ -38,9 +46,9 @@ public class RestHTTPUrlConnection {
 
             urlConn.setRequestMethod("GET");
             urlConn.setRequestProperty("Accept-Charset", "UTF-8"); // Accept-Charset 설정.
-            urlConn.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;cahrset=UTF-8");
+            urlConn.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream(), "UTF-8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
 
             // 출력물의 라인과 그 합에 대한 변수.
             String line;
@@ -61,4 +69,6 @@ public class RestHTTPUrlConnection {
         }
         return null;
     }
+
+
 }

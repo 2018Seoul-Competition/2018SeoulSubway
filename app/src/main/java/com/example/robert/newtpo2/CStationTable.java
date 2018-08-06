@@ -26,6 +26,15 @@ public class CStationTable extends Application {
         m_Context = _Context;
     }
 
+    @Override
+    public void onCreate(){
+        super.onCreate();
+    }
+    @Override
+    public void onTerminate(){
+        super.onTerminate();
+    }
+
     public void init(){
         m_dicStationDic = new Hashtable<String, CStation>();
 
@@ -44,7 +53,7 @@ public class CStationTable extends Application {
             JSONArray jarray = new JSONArray(response.toString());
 
             for(int i=0; i < jarray.length(); i++){
-                JSONObject jObject = jarray.getJSONObject(1);
+                JSONObject jObject = jarray.getJSONObject(i);
                 String stationName = jObject.getString("station_nm");
                 String stationCode = jObject.getString("station_cd");
                 String lineNum = jObject.getString("line_num");
