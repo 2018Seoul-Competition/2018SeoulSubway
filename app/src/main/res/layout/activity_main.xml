@@ -13,7 +13,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="write Line Number"
+        android:text="2"
         android:id="@+id/editLineNum"/>
 
     <Button
@@ -25,12 +25,12 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="역 이름을 적어주세요"
+        android:text="삼성"
         android:id="@+id/editStationName"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="역 호선을 적어주세요"
+        android:text="2"
         android:id="@+id/editStationLine"/>
 
     <Button

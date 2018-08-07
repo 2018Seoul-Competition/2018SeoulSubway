@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.robert.newtpo2.Utils.Dlog;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         m_tvResult = (TextView) findViewById(R.id.result);
 
         //make stationInfo as table
-        table = (CStationTable) getApplication();
-        table.setContext(this);
-        table.init();
+        BaseApplication b = (BaseApplication) getApplication();
+
+        table = b.getM_cStationTable();
     }
 
     public void onClick(View v) {
@@ -126,6 +128,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                     break;
                 case "searchArrivalInfoByIDService" :
                     result = restHTTPUrlConnection.searchArrivalInfoByIDService(m_strStationCode);
+
                     break;
             }
             return result;

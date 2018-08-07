@@ -18,22 +18,19 @@ import java.util.Hashtable;
 /**
  * Created by Robert on 2018-08-05.
  */
-public class CStationTable extends Application {
+public class CStationTable{
     Context m_Context;
     Hashtable<String, CStation> m_dicStationDic;
+
+    public CStationTable(Context m_Context){
+        this.m_Context = m_Context;
+        init();
+    }
 
     public void setContext(Context _Context){
         m_Context = _Context;
     }
 
-    @Override
-    public void onCreate(){
-        super.onCreate();
-    }
-    @Override
-    public void onTerminate(){
-        super.onTerminate();
-    }
 
     public void init(){
         m_dicStationDic = new Hashtable<String, CStation>();

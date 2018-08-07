@@ -2,6 +2,8 @@ package com.example.robert.newtpo2;
 
 import android.os.AsyncTask;
 
+import com.example.robert.newtpo2.Utils.Dlog;
+
 /**
  * Created by Robert on 2018-08-06.
  */
@@ -50,6 +52,7 @@ public class CNetworkTask extends AsyncTask<Void, Void, String> {
                 result = restHTTPUrlConnection.searchArrivalInfoByIDService(m_strStationCode);
                 break;
         }
+        Dlog.i(result);
         return result;
     }
 

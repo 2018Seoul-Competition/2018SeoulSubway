@@ -23,7 +23,9 @@ public class SearchStationActivity extends AppCompatActivity implements Button.O
         m_btnConfirm = (Button)findViewById(R.id.stationNameConfirmBtn);
         m_btnConfirm.setOnClickListener(this);
 
-        CStationTable table = (CStationTable) getApplication();
+        //make stationInfo as table
+        BaseApplication b = (BaseApplication) getApplication();
+        CStationTable table = b.getM_cStationTable();
     }
 
     public void onClick(View v) {
