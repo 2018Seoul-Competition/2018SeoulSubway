@@ -24,8 +24,11 @@ public class RestHTTPUrlConnection {
         return request("http://openapi.seoul.go.kr:8088/"+m_strTempKey+"/xml/SearchSTNBySubwayLineService/0/5/"+strLineNUm);
     }
 
+    //FIXME : have to get xml data and change the value of request url
+    //        change key to sample because of unknown error
     public String realtimeStationArrival(String strStationName){
-        return request("http://swopenAPI.seoul.go.kr/api/subway/" + m_strTempKey + "/xml/realtimeStationArrival/0/5/" +strStationName);
+        //return request("http://swopenAPI.seoul.go.kr/api/subway/" + m_strTempKey + "/xml/realtimeStationArrival/0/5/" +strStationName);
+        return request("http://swopenAPI.seoul.go.kr/api/subway/sample/xml/realtimeStationArrival/0/5/" +strStationName);
     }
 
     public String searchArrivalInfoByIDService(String strStationCode){
@@ -48,6 +51,7 @@ public class RestHTTPUrlConnection {
             urlConn.setRequestProperty("Accept-Charset", "UTF-8"); // Accept-Charset 설정.
             urlConn.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
+            //FIXME : have error when using realtime api
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
 
             // 출력물의 라인과 그 합에 대한 변수.
@@ -62,13 +66,11 @@ public class RestHTTPUrlConnection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (Exception e){
-
+            e.printStackTrace();
         } finally {
             if(urlConn != null)
                 urlConn.disconnect();
         }
         return null;
     }
-
-
 }

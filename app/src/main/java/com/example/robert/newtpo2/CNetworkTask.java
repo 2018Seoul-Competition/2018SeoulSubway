@@ -6,6 +6,11 @@ import com.example.robert.newtpo2.Utils.Dlog;
 
 /**
  * Created by Robert on 2018-08-06.
+ * get API from AsyncTask and return xml without modifying.
+ * 1. construct CNetworktask
+ * 2. setmethod and setvariables
+ * 3. execute
+ * 4. can get xml result data by execute().get()
  */
 public class CNetworkTask extends AsyncTask<Void, Void, String> {
     private String m_strLineNum;
