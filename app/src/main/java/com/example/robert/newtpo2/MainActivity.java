@@ -77,14 +77,13 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             case R.id.btnStationName :
                 //String strStationName = edit2.getText().toString();
+                strStationName = edit2.getText().toString();
                 //String strStationLIne = edit3.getText().toString();
-                networkTask.setMethod("realtimeStationArrival");
-                networkTask.setStationCode(table.getStationCode(strStationName, strStationLIne));
-                try{
-                    strXMLData = networkTask.execute().get();
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+                CStationInfo stationInfo = new CStationInfo();
+                stationInfo.setLineNum(strStationLIne);
+                stationInfo.setStationName(strStationName);
+                stationInfo.getStationInfo();
                 break;
             case R.id.btnStationInfo :
                 //String strStationName = edit2.getText().toString();

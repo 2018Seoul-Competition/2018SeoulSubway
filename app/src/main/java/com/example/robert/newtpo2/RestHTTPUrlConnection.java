@@ -51,6 +51,7 @@ public class RestHTTPUrlConnection {
             urlConn.setRequestProperty("Accept-Charset", "UTF-8"); // Accept-Charset 설정.
             urlConn.setRequestProperty("Context_Type", "application/x-www-form-urlencoded;charset=UTF-8");
 
+            //FIXME : have error when using realtime api
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
 
             // 출력물의 라인과 그 합에 대한 변수.
@@ -65,7 +66,7 @@ public class RestHTTPUrlConnection {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (Exception e){
-
+            e.printStackTrace();
         } finally {
             if(urlConn != null)
                 urlConn.disconnect();
