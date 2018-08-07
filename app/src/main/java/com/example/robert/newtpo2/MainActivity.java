@@ -82,12 +82,11 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 strStationName = edit2.getText().toString();
                 //String strStationLIne = edit3.getText().toString();
 
-                /*
                 CStationInfo stationInfo = new CStationInfo();
                 stationInfo.setLineNum(strStationLIne);
                 stationInfo.setStationName(strStationName);
                 stationInfo.getStationInfo();
-                */
+
                 break;
             case R.id.btnStationInfo :
                 //String strStationName = edit2.getText().toString();
