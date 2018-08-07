@@ -24,8 +24,11 @@ public class RestHTTPUrlConnection {
         return request("http://openapi.seoul.go.kr:8088/"+m_strTempKey+"/xml/SearchSTNBySubwayLineService/0/5/"+strLineNUm);
     }
 
+    //FIXME : have to get xml data and change the value of request url
+    //        change key to sample because of unknown error
     public String realtimeStationArrival(String strStationName){
-        return request("http://swopenAPI.seoul.go.kr/api/subway/" + m_strTempKey + "/xml/realtimeStationArrival/0/5/" +strStationName);
+        //return request("http://swopenAPI.seoul.go.kr/api/subway/" + m_strTempKey + "/xml/realtimeStationArrival/0/5/" +strStationName);
+        return request("http://swopenAPI.seoul.go.kr/api/subway/sample/xml/realtimeStationArrival/0/5/" +strStationName);
     }
 
     public String searchArrivalInfoByIDService(String strStationCode){
@@ -69,6 +72,4 @@ public class RestHTTPUrlConnection {
         }
         return null;
     }
-
-
 }

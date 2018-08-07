@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
 
     public void onClick(View v) {
         CNetworkTask networkTask = new CNetworkTask();
+        String strXMLData="";
 
         //FIXME : for debugging
         String strStationName = "삼성";
@@ -67,72 +69,37 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 String strLineNum = edit1.getText().toString();
                 networkTask.setMethod("searchSTNBySubwayLineService");
                 networkTask.setLineNum(strLineNum);
-                networkTask.execute();
+                try{
+                    strXMLData = networkTask.execute().get();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btnStationName :
                 //String strStationName = edit2.getText().toString();
                 //String strStationLIne = edit3.getText().toString();
                 networkTask.setMethod("realtimeStationArrival");
                 networkTask.setStationCode(table.getStationCode(strStationName, strStationLIne));
-                networkTask.execute();
+                try{
+                    strXMLData = networkTask.execute().get();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.btnStationInfo :
                 //String strStationName = edit2.getText().toString();
                 //String strStationLIne = edit3.getText().toString();
                 networkTask.setMethod("searchArrivalInfoByIDService");
                 networkTask.setStationCode(table.getStationCode(strStationName, strStationLIne));
-                networkTask.execute();
+                try{
+                    strXMLData = networkTask.execute().get();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
         }
-    }
+        m_tvResult.setText(strXMLData);
 
-    public class NetworkTask extends AsyncTask<Void, Void, String>{
-        private String m_strLineNum;
-        private String m_strStationName;
-        private String m_strStationCode;
-        private String m_strFrCode;
-        private String m_strMethod;
 
-       private void setStationName(String strStationName){
-           m_strStationName = strStationName;
-       }
-
-        private void setLineNum(String strLineNum){
-            m_strLineNum = strLineNum;
-        }
-
-        private void setStationCode(String strStationCode){
-            m_strStationCode = strStationCode;
-        }
-
-        private void setFrCode(String strFrCode){
-            m_strFrCode = strFrCode;
-        }
-
-        private void setMethod(String strMethod){
-            m_strMethod = strMethod;
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            String result = "";
-            RestHTTPUrlConnection restHTTPUrlConnection = new RestHTTPUrlConnection();
-            switch(m_strMethod){
-                case "searchSTNBySubwayLineService" :
-                    result = restHTTPUrlConnection.searchSTNBySubwayLineService(m_strLineNum);
-                    break;
-                case "realtimeStationArrival" :
-                    result = restHTTPUrlConnection.realtimeStationArrival(m_strStationName);
-                    break;
-                case "searchArrivalInfoByIDService" :
-                    result = restHTTPUrlConnection.searchArrivalInfoByIDService(m_strStationCode);
-                    break;
-            }
-            return result;
-        }
-
-        protected void onPostExecute(String s){
-            m_tvResult.setText(s);
-        }
     }
 }
