@@ -11,7 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.robert.newtpo2.Arrival.ArrivalResult;
 import com.example.robert.newtpo2.Utils.Dlog;
+import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,15 +83,28 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 }
                 break;
             case R.id.btnStationName :
-                //String strStationName = edit2.getText().toString();
+                try {
+                    /*
+                    networkTask.setMethod("testXml");
+                    String sampleXml = networkTask.execute().get();
+                    //String sampleXml = getSampleXML("http://ws.bus.go.kr/api/rest/buspos/getBusPosByRtid?serviceKey=EhxzLlLWZRRobmy7a5zscgcLA8u9%2B1EKLE1m439UhFUuw7nGChFGGYjH5q8JNnOmI3ma7NYtPPH9xo75Sipt%2FA%3D%3D&busRouteId=100100411");
+                    Dlog.i(sampleXml);
+                    JSONObject jsonObj = XML.toJSONObject(sampleXml);
+                    ArrivalResult result = new Gson().fromJson(String.valueOf(jsonObj), ArrivalResult.class);
+                    m_tvResult.setText(result.getArrivalServiceResult().getArrivalMsgHeader().getHeaderMsg());
+                    */
+                    m_tvResult.setText("Nothing");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                /*
                 strStationName = edit2.getText().toString();
-                //String strStationLIne = edit3.getText().toString();
 
                 CStationInfo stationInfo = new CStationInfo();
                 stationInfo.setLineNum(strStationLIne);
                 stationInfo.setStationName(strStationName);
                 stationInfo.getStationInfo();
-
+                */
                 break;
             case R.id.btnStationInfo :
                 //String strStationName = edit2.getText().toString();
@@ -102,4 +120,6 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
         }
         m_tvResult.setText(strXMLData);
     }
+
+
 }

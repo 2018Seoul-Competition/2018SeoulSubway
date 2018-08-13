@@ -47,6 +47,13 @@ public class CNetworkTask extends AsyncTask<Void, Void, String> {
         String result = "";
         RestHTTPUrlConnection restHTTPUrlConnection = new RestHTTPUrlConnection();
         switch(m_strMethod){
+            case "xmlTest":
+                try {
+                    result = restHTTPUrlConnection.xmlTest();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                break;
             case "searchSTNBySubwayLineService" :
                 result = restHTTPUrlConnection.searchSTNBySubwayLineService(m_strLineNum);
                 break;
