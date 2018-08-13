@@ -17,6 +17,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -84,6 +85,8 @@ public class MainActivity extends AppCompatActivity implements Button.OnClickLis
                 break;
             case R.id.btnStationName :
                 try {
+
+                    //String test = XML.toJSONObject("a");
                     /*
                     networkTask.setMethod("testXml");
                     String sampleXml = networkTask.execute().get();
